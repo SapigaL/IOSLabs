@@ -11,145 +11,120 @@ import FirebaseAuth
 import Firebase
 
 class SingUpViewController: UIViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var number: UITextField!
-    @IBOutlet weak var email: UITextField!
-    @IBOutlet weak var password: UITextField!
+    //MARK: UI Variables
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var numberField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
-    static var idUser: String = ""
     
-
+    //MARK:  Variables
+    var FieldList  = [UITextField]()
+    var textFieldList = [String]()
+    let patterns = [ "^[A-Za-z]{1,10}$",
+                     "^(0)[0-9]{6,14}$",
+                     "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}",
+                     "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}" ]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUpElements()
-
+    //MARK: Button Methods
+    @IBAction func signUpTapped(_ sender: Any) {
+        //  connectDb();
+        
+        // Validate the fields
+        let error = validateFields()
+        
+        if (error?.isEmpty==false) {
+            // Show error massage
+            showError(error!)
+        }
+        else{
+            singUpFirebase()
+        }
     }
-    func setUpElements()  {
+    
+    //MARK: Private Methods
+    private func setUpElements()  {
         
         //Hide the error label
         errorLabel.alpha = 0
         
         //style the elements
-        Utilities.styleTextField(name)
-        Utilities.styleTextField(number)
-        Utilities.styleTextField(email)
-        Utilities.styleTextField(password)
+        Utilities.styleTextField(nameField, color: UIColor.color)
+        Utilities.styleTextField(numberField, color: UIColor.color)
+        Utilities.styleTextField(emailField, color: UIColor.color)
+        Utilities.styleTextField(passwordField, color: UIColor.color)
         Utilities.styleFilledButton(signUpButton)
-
-
+        
+        
     }
-    
+    private func patern(fied: String,index: Int) -> Bool {
+        
+        let patern = NSPredicate(format: "SELF MATCHES %@",patterns[index])
+        return patern.evaluate(with: fied)
+    }
     // Check the fields
-    func validateFields() -> String? {
+    private func validateFields() -> String? {
         var checkingErrors = 0
-        let correctNumber = number.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let cleanedPassword = password.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        let correctEmail = email.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let correctName = nameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let correctNumber = numberField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanedPassword = passwordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let correctEmail = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         //Check name field
-        if  name.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""
-        { Utilities.errorStyleTextField(name)
-            checkingErrors+=1
-        }
-        else{
-            Utilities.styleTextField(name)
-            
-        }
-        // Check number field
+        FieldList = [nameField,numberField,passwordField,emailField]
+        textFieldList = [correctName,correctNumber,cleanedPassword,correctEmail]
         
-        if   Utilities.isnubmerValid(currectNumber) == false {
-            Utilities.errorStyleTextField(number)
-             checkingErrors+=1
-            
+        for i in 0...3 {
+            checkingErrors=0
+            if  patern(fied: textFieldList[i],index: i){
+                Utilities.styleTextField(FieldList[i], color: UIColor.color)
+            }
+            else{
+                
+                Utilities.styleTextField(FieldList[i], color: UIColor.errorColor)
+            }
         }
-        else{
-            Utilities.styleTextField(number)
-            
-        }
-        // Check email field
-        if  Utilities.isValidEmail(currectEmail) == false {
-            Utilities.errorStyleTextField(email)
-            checkingErrors+=1
-           
-        }
-        else {
-            Utilities.styleTextField(email)
-        }
-    
-        // Check if the password is secure
         
-        if Utilities.isPasswordValid(cleanedPassword) == false {
-            // Password bad
-            Utilities.errorStyleTextField(password)
-            checkingErrors+=1
-        } else {
-             Utilities.styleTextField(password)
-        }
-        // Check on an error
         if checkingErrors > 0 {
             return "Please fill correct fields"
         }
         else{
-              return nil
+            return nil
         }
     }
-
-
-    @IBAction func signUpTapped(_ sender: Any) {
+    
+    private func singUpFirebase()  {
+        // Create cleaned versions of the data
+        let nameUser = nameField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let emailUser = emailField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        let passwordUser = passwordField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+        // Create the user
         
-        // Validate the fields
-        let error = validateFields()
-        
-        if error != nil {
-            // Show error massage
-            showError(error!)
-        }
-        else{
-            // Create cleaned versions of the data
-            let dbName = name.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let dbNumber = number.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let dbEmail = email.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let dbPassword = password.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            SingUpViewController.idUser = dbName
-            // Create the user
+        Auth.auth().createUser(withEmail: emailUser, password: passwordUser) { (result, err) in
             
-           Auth.auth().createUser(withEmail: dbEmail, password: dbPassword) { (result, err) in
-                
-                // Check for errors
-                if  err != nil {
-                    self.showError("Error creating user")
-                }
-                else{
-                    // Initialize an instance of Cloud Firestore
-                    let db = Firestore.firestore()
-                    
-                    db.collection("users").addDocument(data: ["name":dbName, "number":dbNumber, "uid": result!.user.uid]) { (error) in
-                        
-                        
-                        if error != nil {
-                            self.showError("Error saving user data")
-                        }
-                    }
-                     // Transition to the home screen
-                    self.transitionToHome()
-                }
+            // Check for errors
+            if  err != nil {
+                self.showError("Error creating user")
             }
-           
+            else{
+                self.performSegue(withIdentifier: "loginViewController", sender: self)
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                changeRequest?.displayName = nameUser
+                changeRequest?.commitChanges(completion: nil)
+                guard let name = result?.user.displayName else {return}
+            }
         }
-       
     }
     
-    func transitionToHome() {
-        
-       let homeViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
-        view.window?.rootViewController = homeViewController
-        view.window?.makeKeyAndVisible()
-    }
     
-    func showError(_ massage:String) {
+    private  func showError(_ massage:String) {
         errorLabel.text = massage
         errorLabel.alpha = 1
+    }
+    
+    //MARK: Override Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpElements()
     }
 }

@@ -10,19 +10,23 @@ import UIKit
 import Firebase
 
 class HomeViewController: UIViewController {
-
+    //MARK: UI Variables
     @IBOutlet weak var welcomeUser: UILabel!
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        welcomeUser.text = "Welcome, " + SingUpViewController.idUser + LoginViewController.idUser
-    }
     
-
-    
+    //MARK: UIButton Methods
     @IBAction func backButtom(_ sender: Any) {
         exit(0)
     }
     
-
+    //MARK: Override Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let currentUser = Auth.auth().currentUser?.displayName
+        welcomeUser.text = "Welcome, \(currentUser!) "
+    }
+    
+    
+    
+    
+    
 }

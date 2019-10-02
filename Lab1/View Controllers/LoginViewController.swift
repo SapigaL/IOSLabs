@@ -10,56 +10,59 @@ import UIKit
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
-
+    
+    //MARK: UI Variables
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
-    static var idUser: String = ""
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        setUpElements()
-    }
-    
-    func setUpElements()  {
-        
-        //Hide the error label
-        errorLabel.alpha = 0
-        
-        //style the elements
-        Utilities.styleTextField(emailTextField)
-        Utilities.styleTextField(passwordTextField)
-        Utilities.styleFilledButton(loginButton)
-        
-        
-    }
-
-
+    //MARK: UIButton Methods
     @IBAction func loginTapped(_ sender: Any) {
+        // loginIn in the user
+        loginIn()
+    }
+    
+    //MARK:  Private Methods
+    private func loginIn(){
         // Create cleane versions of the text field
         let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        // Signing in the user
         Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
             if error != nil {
                 self.errorLabel.text = error!.localizedDescription
                 self.errorLabel.alpha = 1
-                
-                Utilities.errorStyleTextField(self.emailTextField)
-                Utilities.errorStyleTextField(self.passwordTextField)
+                Utilities.styleTextField(self.emailTextField, color: UIColor.errorColor)
+                Utilities.styleTextField(self.passwordTextField, color: UIColor.errorColor)
             }
             else {
-                Utilities.styleTextField(self.emailTextField)
-                Utilities.styleTextField(self.passwordTextField)
-                LoginViewController.idUser = result?.user.email ?? ""
-                let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
-                self.view.window?.rootViewController = homeViewController
-                self.view.window?.makeKeyAndVisible()
+                Utilities.styleTextField(self.emailTextField, color: UIColor.color)
+                Utilities.styleTextField(self.passwordTextField, color: UIColor.color)
+                self.transitionToHome()
             }
         }
     }
-
+    
+    private func setUpElements()  {
+        //Hide the error label
+        errorLabel.alpha = 0
+        //style the elements
+        Utilities.styleTextField(emailTextField, color: UIColor.color)
+        Utilities.styleTextField(passwordTextField, color: UIColor.color)
+        Utilities.styleFilledButton(loginButton)
+    }
+    
+    private func transitionToHome() {
+        let homeViewController = storyboard?.instantiateViewController(withIdentifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        view.window?.rootViewController = homeViewController
+        view.window?.makeKeyAndVisible()
+    }
+    
+    //MARK: Override Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        setUpElements()
+    }
 }

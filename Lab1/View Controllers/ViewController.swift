@@ -8,24 +8,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
-    @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var loginButton: UIButton!
+final class ViewController: UIViewController {
+    
+    @IBOutlet private weak var signUpButton: UIButton!
+    @IBOutlet private weak var loginButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpElements()
         
     }
-    func setUpElements()  {
+    private func setUpElements()  {
         Utilities.styleFilledButton(signUpButton)
         Utilities.styleHollowButton(loginButton)
     }
-
+    
     @IBAction func backButton(_ sender: Any) {
         exit(0)
-
+        
     }
 }
 

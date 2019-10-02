@@ -1,9 +1,9 @@
 //
 //  Constants.swift
-//  CustomLoginDemo
+//  Lab1
 //
-//  Created by Christopher Ching on 2019-07-23.
-//  Copyright © 2019 Christopher Ching. All rights reserved.
+//  Created by Liubomyr on 9/19/19.
+//  Copyright © 2019 Liubomyr. All rights reserved.
 //
 
 import Foundation
