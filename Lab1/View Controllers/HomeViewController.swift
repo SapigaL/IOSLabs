@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     //MARK: UI Variables
     @IBOutlet weak var welcomeUser: UILabel!
     

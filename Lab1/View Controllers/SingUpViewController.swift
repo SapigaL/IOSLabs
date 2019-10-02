@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class SingUpViewController: UIViewController, UITextFieldDelegate {
+final class SingUpViewController: UIViewController, UITextFieldDelegate {
     //MARK: UI Variables
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var numberField: UITextField!
