@@ -15,7 +15,14 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var errorEmailLabel: UILabel!
+    @IBOutlet weak var errorPasswordLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
+    
+    
+    //MARK:  Variables
+     let errorText = ["Uncorrect Email","Uncorrect Password"]
+    
     
     //MARK: UIButton Methods
     @IBAction func loginTapped(_ sender: Any) {
@@ -32,13 +39,14 @@ final class LoginViewController: UIViewController {
             if error != nil {
                 self.errorLabel.text = error!.localizedDescription
                 self.errorLabel.alpha = 1
-                Utilities.styleTextField(self.emailTextField, color: UIColor.errorColor)
-                Utilities.styleTextField(self.passwordTextField, color: UIColor.errorColor)
+                self.errorLabel.isHidden = false
+                Utilities.styleTextField(self.emailTextField, color: UIColor.errorColor, textLabel: self.errorEmailLabel, labelcolor: UIColor.errorColor, errorText: self.errorText[0], labelHide: false)
+                Utilities.styleTextField(self.passwordTextField, color: UIColor.errorColor, textLabel: self.errorPasswordLabel, labelcolor: UIColor.errorColor, errorText: self.errorText[1], labelHide: false)
             }
             else {
-                Utilities.styleTextField(self.emailTextField, color: UIColor.color)
-                Utilities.styleTextField(self.passwordTextField, color: UIColor.color)
-                self.transitionToHome()
+                Utilities.styleTextField(self.emailTextField, color: UIColor.color, textLabel: self.errorEmailLabel, labelcolor: UIColor.successColor, errorText: self.errorText[0], labelHide: true)
+                Utilities.styleTextField(self.passwordTextField, color: UIColor.color, textLabel: self.errorPasswordLabel, labelcolor: UIColor.successColor, errorText: self.errorText[1], labelHide: true)
+                 self.transitionToHome()
             }
         }
     }
@@ -47,8 +55,10 @@ final class LoginViewController: UIViewController {
         //Hide the error label
         errorLabel.alpha = 0
         //style the elements
-        Utilities.styleTextField(emailTextField, color: UIColor.color)
-        Utilities.styleTextField(passwordTextField, color: UIColor.color)
+        errorLabel.isHidden = true // hide
+       
+        Utilities.styleTextField(emailTextField, color: UIColor.color, textLabel: errorEmailLabel, labelcolor: UIColor.successColor, errorText: errorText[1], labelHide: true)
+        Utilities.styleTextField(passwordTextField, color: UIColor.color, textLabel: errorPasswordLabel, labelcolor: UIColor.successColor, errorText: errorText[1], labelHide: true)
         Utilities.styleFilledButton(loginButton)
     }
     
@@ -61,7 +71,6 @@ final class LoginViewController: UIViewController {
     //MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
         setUpElements()
     }

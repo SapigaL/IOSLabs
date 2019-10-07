@@ -13,7 +13,7 @@ final class Utilities {
     
     //MARK: Static Methods
 
-    static func styleTextField(_ textfield:UITextField, color: UIColor) {
+    static func styleTextField(_ textfield:UITextField, color: UIColor, textLabel:UILabel, labelcolor: UIColor, errorText: String, labelHide: Bool) {
         
         // Create the bottom line
         let bottomLine = CALayer()
@@ -28,14 +28,19 @@ final class Utilities {
         // Add the line to the text field
         textfield.layer.addSublayer(bottomLine)
         
+        //
+        textLabel.textColor = labelcolor
+        textLabel.text = errorText
+        textLabel.isHidden = labelHide
+        
+        
     }
 
-    
     static func styleFilledButton(_ button:UIButton) {
     
         // Filled rounded corner style
         button.backgroundColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
-        button.layer.cornerRadius = 25.0
+        button.layer.cornerRadius = 20.0
         button.tintColor = UIColor.white
     }
     
@@ -56,5 +61,9 @@ extension UIColor{
     }
     static var errorColor : UIColor {
         return UIColor(red: 255/255, green: 30/255, blue: 20/255, alpha: 1)
+    }
+    
+    static var successColor : UIColor {
+       return UIColor(red: 255/255, green: 30/255, blue: 20/255, alpha: 0)
     }
 }
