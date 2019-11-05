@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 @UIApplicationMain
-final class  AppDelegate: UIResponder, UIApplicationDelegate {
+ final class  AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     

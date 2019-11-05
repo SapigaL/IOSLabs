@@ -6,7 +6,8 @@ pod 'Firebase/Auth'
 pod 'Firebase/Analytics'
 pod 'Firebase/Firestore'
 pod 'Firebase/Core'
-
+pod 'SDWebImage'
+pod 'MaterialComponents/Snackbar'
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
