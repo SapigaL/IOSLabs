@@ -6,14 +6,13 @@
 //
 
 import UIKit
-import Firebase
 
 struct Course: Decodable {
     let id: Int
     let address: String
     let trademark: String
-    let img: URL
-    let ParkingSpaces: String
+    let courseImage: URL
+    let parkingSpaces: String
     
 }
 var datas = [Course]()
