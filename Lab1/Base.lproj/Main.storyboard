@@ -206,19 +206,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pz3-5q-GeS">
-                                <rect key="frame" x="20" y="597" width="335" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="zCd-L2-WoK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Log Out"/>
-                                <connections>
-                                    <action selector="backButtom:" destination="JTN-wJ-bp5" eventType="touchUpInside" id="h73-bq-yDl"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjY-cT-1GL">
-                                <rect key="frame" x="2" y="44" width="375" height="553"/>
+                                <rect key="frame" x="2" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActorCell" rowHeight="76" id="fcF-bf-wW6" customClass="ActorCell" customModule="Lab1" customModuleProvider="target">
@@ -275,17 +264,13 @@
                         <constraints>
                             <constraint firstItem="NYl-1j-mou" firstAttribute="trailing" secondItem="fjY-cT-1GL" secondAttribute="trailing" constant="-2" id="5Dd-M3-xFn"/>
                             <constraint firstItem="fjY-cT-1GL" firstAttribute="top" secondItem="NYl-1j-mou" secondAttribute="top" id="AvU-qG-qqT"/>
-                            <constraint firstItem="NYl-1j-mou" firstAttribute="trailing" secondItem="pz3-5q-GeS" secondAttribute="trailing" constant="20" id="CFV-Tf-qgK"/>
                             <constraint firstItem="fjY-cT-1GL" firstAttribute="leading" secondItem="NYl-1j-mou" secondAttribute="leading" constant="2" id="CKF-eH-Nai"/>
-                            <constraint firstItem="NYl-1j-mou" firstAttribute="bottom" secondItem="pz3-5q-GeS" secondAttribute="bottom" constant="20" id="Gzn-Lo-2S7"/>
-                            <constraint firstItem="pz3-5q-GeS" firstAttribute="leading" secondItem="NYl-1j-mou" secondAttribute="leading" constant="20" id="qd2-Sv-Wut"/>
-                            <constraint firstItem="pz3-5q-GeS" firstAttribute="top" secondItem="fjY-cT-1GL" secondAttribute="bottom" id="zDg-6Q-Ne7"/>
+                            <constraint firstItem="fjY-cT-1GL" firstAttribute="bottom" secondItem="NYl-1j-mou" secondAttribute="bottom" id="i0U-WK-P5r"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NYl-1j-mou"/>
                     </view>
                     <navigationItem key="navigationItem" id="NtU-bf-3jh"/>
                     <connections>
-                        <outlet property="logOut" destination="pz3-5q-GeS" id="EPZ-G7-kj4"/>
                         <outlet property="tableView" destination="fjY-cT-1GL" id="a3k-u3-jFE"/>
                     </connections>
                 </viewController>
