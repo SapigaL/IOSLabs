@@ -20,8 +20,6 @@ final class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
     
-    //MARK:  Variables
-     let errorText = ["Uncorrect Email","Uncorrect Password"]
     
     
     //MARK: UIButton Methods
@@ -40,25 +38,25 @@ final class LoginViewController: UIViewController {
                 self.errorLabel.text = error!.localizedDescription
                 self.errorLabel.alpha = 1
                 self.errorLabel.isHidden = false
-                Utilities.styleTextField(self.emailTextField, color: UIColor.errorColor, textLabel: self.errorEmailLabel, labelcolor: UIColor.errorColor, errorText: self.errorText[0], labelHide: false)
-                Utilities.styleTextField(self.passwordTextField, color: UIColor.errorColor, textLabel: self.errorPasswordLabel, labelcolor: UIColor.errorColor, errorText: self.errorText[1], labelHide: false)
+                Utilities.styleTextField(self.emailTextField, color: UIColor.errorColor, textLabel: self.errorEmailLabel, labelcolor: UIColor.errorColor, errorText: Constants.ErrorText.errorTextLogin[0], labelHide: false)
+                Utilities.styleTextField(self.passwordTextField, color: UIColor.errorColor, textLabel: self.errorPasswordLabel, labelcolor: UIColor.errorColor, errorText: Constants.ErrorText.errorTextLogin[1], labelHide: false)
             }
             else {
-                Utilities.styleTextField(self.emailTextField, color: UIColor.color, textLabel: self.errorEmailLabel, labelcolor: UIColor.successColor, errorText: self.errorText[0], labelHide: true)
-                Utilities.styleTextField(self.passwordTextField, color: UIColor.color, textLabel: self.errorPasswordLabel, labelcolor: UIColor.successColor, errorText: self.errorText[1], labelHide: true)
+                Utilities.styleTextField(self.emailTextField, color: UIColor.color, textLabel: self.errorEmailLabel, labelcolor: UIColor.successColor, errorText: Constants.ErrorText.errorTextLogin[0], labelHide: true)
+                Utilities.styleTextField(self.passwordTextField, color: UIColor.color, textLabel: self.errorPasswordLabel, labelcolor: UIColor.successColor, errorText: Constants.ErrorText.errorTextLogin[1], labelHide: true)
                  self.transitionToHome()
             }
         }
     }
-    
+
     private func setUpElements()  {
         //Hide the error label
         errorLabel.alpha = 0
         //style the elements
         errorLabel.isHidden = true // hide
        
-        Utilities.styleTextField(emailTextField, color: UIColor.color, textLabel: errorEmailLabel, labelcolor: UIColor.successColor, errorText: errorText[1], labelHide: true)
-        Utilities.styleTextField(passwordTextField, color: UIColor.color, textLabel: errorPasswordLabel, labelcolor: UIColor.successColor, errorText: errorText[1], labelHide: true)
+        Utilities.styleTextField(emailTextField, color: UIColor.color, textLabel: errorEmailLabel, labelcolor: UIColor.successColor, errorText: Constants.ErrorText.errorTextLogin[1], labelHide: true)
+        Utilities.styleTextField(passwordTextField, color: UIColor.color, textLabel: errorPasswordLabel, labelcolor: UIColor.successColor, errorText: Constants.ErrorText.errorTextLogin[1], labelHide: true)
         Utilities.styleFilledButton(loginButton)
     }
     
@@ -67,11 +65,21 @@ final class LoginViewController: UIViewController {
         view.window?.rootViewController = homeViewController
         view.window?.makeKeyAndVisible()
     }
-    
+    private func clearStack(){
+        guard let navigationController = self.navigationController else { return }
+        var navigationArray = navigationController.viewControllers // To get all UIViewController stack as Array
+        if (navigationArray.count>2){
+        navigationArray.remove(at: 1) // To remove previous UIViewController
+        }
+        self.navigationController?.viewControllers = navigationArray
+    }
     //MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        navigationController?.navigationBar.isHidden = false
         setUpElements()
+        clearStack()
     }
+    
 }

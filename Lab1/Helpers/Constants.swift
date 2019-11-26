@@ -13,8 +13,21 @@ struct Constants {
     struct Storyboard {
         
         static let homeViewController = "HomeVC"
+       
+        
         
     }
-    
+    struct Patterns {
+        static let patterns = [ "^[A-Za-z]{1,10}$",
+                         "^(0)[0-9]{6,14}$",
+                         
+                         "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}",
+                         "^(?=.*[a-z])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}"]
+        
+    }
+    struct ErrorText {
+        static let errorText = ["Uncorrect Name","Uncorrect Number","Uncorrect Email","Uncorrect Password"]
+        static let errorTextLogin = ["Uncorrect Email","Uncorrect Password"]
+    }
     
 }

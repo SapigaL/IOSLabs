@@ -12,6 +12,7 @@ final class ViewController: UIViewController {
     
     @IBOutlet private weak var signUpButton: UIButton!
     @IBOutlet private weak var loginButton: UIButton!
+    @IBOutlet weak var exitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,12 +21,22 @@ final class ViewController: UIViewController {
     }
     private func setUpElements()  {
         Utilities.styleFilledButton(signUpButton)
-        Utilities.styleHollowButton(loginButton)
+        Utilities.styleFilledButton(loginButton)
+        Utilities.styleHollowButton(exitButton)
     }
     
-    @IBAction func backButton(_ sender: Any) {
+    @IBAction func exitButton(_ sender: Any) {
         exit(0)
-        
+    }
+    
+    @IBAction func xitButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else {
+            return
+        }
+       navigationController?.pushViewController(vc, animated: true)
+    
     }
 }
+
 

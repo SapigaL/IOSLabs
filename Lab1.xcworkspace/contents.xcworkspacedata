@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:/Users/liudwig/Desktop/ios(standword)/IOSLabs/Lab1/Actor.swift">
+   </FileRef>
+   <FileRef
       location = "group:Lab1.xcodeproj">
    </FileRef>
    <FileRef
