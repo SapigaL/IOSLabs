@@ -29,9 +29,8 @@ final class InfoDetailsVC: UIViewController {
     //MARK: - Private
     private func setupVC() {
         imageFromCell.sd_setImage(with: model.img, placeholderImage: nil)
-        addressLabel.text = "Trademark: " + model.trademark
-        parkingSpaceLabel.text = "Address: " + model.address
-        tradeMarkLabel.text = "Parking Space: " + model.ParkingSpaces
+        addressLabel.text = "Car Name: " + model.trademark
+        parkingSpaceLabel.text = "MARK: " + model.address
+        tradeMarkLabel.text = "Count cars: " + model.ParkingSpaces
     }
-    
 }

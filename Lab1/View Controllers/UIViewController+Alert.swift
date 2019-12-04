@@ -10,6 +10,7 @@ import UIKit
 
 extension UIViewController {
     
+  //MARK:  Methods
   func showAlertMessageWithTitleOkButton(_ title: String) {
            let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert)
            let okAction = UIAlertAction(

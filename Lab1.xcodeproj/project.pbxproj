@@ -151,12 +151,12 @@
 				2BD8D3302333B3C800CE2CD6 /* Main.storyboard */,
 				2B247E73236A32AB008B72A7 /* ActorCell.swift */,
 				2B247E75236A375B008B72A7 /* CourseModel.swift */,
+				2B247E77236F10B6008B72A7 /* networking.swift */,
+				2B247E79236F6C18008B72A7 /* СheckInternet.swift */,
 				2BD8D3332333B3C900CE2CD6 /* Assets.xcassets */,
 				2BD8D3352333B3C900CE2CD6 /* LaunchScreen.storyboard */,
 				2BD8D3382333B3C900CE2CD6 /* Info.plist */,
 				2BD8D35A2333B50700CE2CD6 /* GoogleService-Info.plist */,
-				2B247E77236F10B6008B72A7 /* networking.swift */,
-				2B247E79236F6C18008B72A7 /* СheckInternet.swift */,
 			);
 			path = Lab1;
 			sourceTree = "<group>";

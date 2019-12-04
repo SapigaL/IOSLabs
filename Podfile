@@ -2,6 +2,7 @@
 # platform :ios, '9.0'
 
 target 'Lab1' do
+pod 'MaterialComponents/Buttons'
 pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'Firebase/Analytics'

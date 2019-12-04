@@ -13,17 +13,15 @@ import FirebaseStorage
 
 final class EditViewController: UIViewController {
 
+    //MARK: UI Variables
     @IBOutlet private weak var userImage: UIImageView!
     @IBOutlet private weak var userPhoneField: UITextField!
     @IBOutlet private weak var userNameField: UITextField!
     
+    //MARK:  Variables
     private var imagePicker: ImagePicker!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
-    }
-
+   
+    //MARK: Button Methods
     @IBAction func changePhoto(_ sender: UIButton) {
         imagePicker.present(from: sender)
         uploadProfileImage()
@@ -34,7 +32,7 @@ final class EditViewController: UIViewController {
         uploadProfileImage()
     }
     
-    
+    //MARK: Private Methods
     private func uploadProfileImage() {
         guard let currentImage = userImage.image else { return }
         guard let imageData = currentImage.jpegData(compressionQuality: 0.5) else { return }
@@ -46,7 +44,8 @@ final class EditViewController: UIViewController {
         profileReference.putData(imageData, metadata: data) { (data, error) in
             if let err = error {
                 print(err.localizedDescription)
-            }}
+            }
+        }
     }
     
     private func changeUserInfo() {
@@ -64,6 +63,20 @@ final class EditViewController: UIViewController {
         }
     }
     
+    //MARK: Override Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        guard let user = Auth.auth().currentUser else { return }
+        let storageRef = Storage.storage().reference(forURL: "gs://labonswift.appspot.com")
+        let storageProfileRef = storageRef.child("profile").child(user.uid)
+        storageProfileRef.downloadURL { (url, error) in
+            if let metaImageUrl = url {
+                self.userImage.sd_setImage(with: metaImageUrl, placeholderImage: nil)
+               } else {
+            }
+        }
+    }
 }
 
 extension EditViewController: ImagePickerDelegate {

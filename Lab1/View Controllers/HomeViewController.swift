@@ -10,10 +10,11 @@ import UIKit
 import Firebase
 import SDWebImage
 import MaterialComponents.MaterialSnackbar
-
+import MaterialComponents.MaterialButtons
 
 final class HomeViewController: UIViewController {
-    
+
+
     //MARK:  Properties
     private let message = MDCSnackbarMessage()
     private let network = NetworkManager()
@@ -104,8 +105,8 @@ extension HomeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActorCell") as! ActorCell
         let datatt = dataCourse[indexPath.row]
-        cell.nameLbl.numberOfLines = datatt.id
-        cell.valueLbl.text = datatt.ParkingSpaces
+        cell.nameLbl.text = "Count cars: " + datatt.ParkingSpaces
+        cell.valueLbl.text = "MARK: " + datatt.ParkingSpaces
         cell.img.sd_setImage(with: datatt.img, placeholderImage: nil)
         return cell
     }

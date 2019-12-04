@@ -58,7 +58,10 @@ final class LoginViewController: UIViewController {
     }
     
     private func transitionToHome() {
-        performSegue(withIdentifier: "homeVC", sender: self)
+        let st = UIStoryboard(name: "Main", bundle: nil)
+        guard let viewController = st.instantiateViewController(withIdentifier: "tabbar") as? UITabBarController else { return }
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true)
     }
     
     private func clearStack(){
