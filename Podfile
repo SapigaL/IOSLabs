@@ -3,8 +3,9 @@
 
 target 'Lab1' do
 pod 'Firebase/Auth'
+pod 'Firebase/Storage'
 pod 'Firebase/Analytics'
-pod 'Firebase/Firestore'
+pod 'Firebase/Database'
 pod 'Firebase/Core'
 pod 'SDWebImage'
 pod 'MaterialComponents/Snackbar'

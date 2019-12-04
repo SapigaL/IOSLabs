@@ -1,8 +1,9 @@
 //
-//  Actor.swift
-//  
+//  ActorCell.swift
+//  Lab1
 //
-//  Created by Liubomyr on 10/30/19.
+//  Created by Liubomyr on 28.11.2019.
+//  Copyright © 2019 Liubomyr. All rights reserved.
 //
 
 import UIKit

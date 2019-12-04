@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class ViewController: UIViewController {
     
@@ -26,14 +27,13 @@ final class ViewController: UIViewController {
     }
     
     @IBAction func exitButton(_ sender: Any) {
-        exit(0)
+        let auth = Auth.auth()
+        
     }
     
     @IBAction func xitButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else {
-            return
-        }
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else { return }
        navigationController?.pushViewController(vc, animated: true)
     
     }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>191780924396-sn0tr9keokrnksfinfoo62f5rgq9ekft.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.191780924396-sn0tr9keokrnksfinfoo62f5rgq9ekft</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDv0MCWR5FTBZpD-15snbGyF-EQ2cU8npw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>191780924396</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.labapp</string>
+	<key>PROJECT_ID</key>
+	<string>labonswift</string>
+	<key>STORAGE_BUCKET</key>
+	<string>labonswift.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:191780924396:ios:7537472ec4966bf3846ec9</string>
+	<key>DATABASE_URL</key>
+	<string>https://labonswift.firebaseio.com</string>
+</dict>
+</plist>

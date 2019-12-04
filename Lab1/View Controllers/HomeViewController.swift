@@ -11,10 +11,10 @@ import Firebase
 import SDWebImage
 import MaterialComponents.MaterialSnackbar
 
+
 final class HomeViewController: UIViewController {
     
     //MARK:  Properties
-    private var dataCourse = [Course]()
     private let message = MDCSnackbarMessage()
     private let network = NetworkManager()
     private let ckeckInternet = CheckInternet()
@@ -23,6 +23,8 @@ final class HomeViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         return refreshControl
     }()
+    private var dataCourse = [Course]()
+    private var currentIndex = 0
     
     //MARK: Outlets
     @IBOutlet private weak var welcomeUserLabel: UILabel!
@@ -31,17 +33,25 @@ final class HomeViewController: UIViewController {
     // MARK: - View controller lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        configTable()
-        if(checkConnection()){
-            fetchData()
-        }
-        else {
-            showMessege(text: "No Internet connection")
-        }
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        setupVC()
+    }
+    
+    //MARK: - Prepare segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let destinationVC = segue.destination as? InfoDetailsVC else { return }
+        destinationVC.model = dataCourse[currentIndex]
     }
     
     //MARK: Private Methods
+    private func setupVC() {
+        configTable()
+        if checkConnection() { fetchData() }
+        else { showMessege(text: "No Internet connection") }
+    }
+    
     private func fetchData(){
+        
         network.getDataFromServer { [weak self] (result) in
             switch result {
             case .Seccess(let data):
@@ -61,12 +71,12 @@ final class HomeViewController: UIViewController {
         tableView.delegate = self
     }
     
-    private func showMessege(text :String){
+    private func showMessege(text :String) {
         message.text = text
         MDCSnackbarManager.show(message)
     }
     
-    private func checkConnection() -> Bool{
+    private func checkConnection() -> Bool {
         return ckeckInternet.Connection()
     }
     
@@ -82,17 +92,16 @@ final class HomeViewController: UIViewController {
 }
 
 //MARK: UITableViewDelegate
-extension HomeViewController:UITableViewDelegate{}
+extension HomeViewController:UITableViewDelegate {}
 
 //MARK: UITableViewDataSource
 extension HomeViewController: UITableViewDataSource{
     
-    //MARK: Public Methods
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataCourse.count
     }
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActorCell") as! ActorCell
         let datatt = dataCourse[indexPath.row]
         cell.nameLbl.numberOfLines = datatt.id
@@ -101,5 +110,9 @@ extension HomeViewController: UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentIndex = indexPath.row
+        performSegue(withIdentifier: "CellDetail", sender: self)
+    }
 }
 
