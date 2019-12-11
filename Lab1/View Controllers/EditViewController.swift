@@ -60,13 +60,10 @@ final class EditViewController: UIViewController {
             }
             request.commitChanges(completion: nil)
             self.showAlertMessageWithTitleOkButton("You change it")
+            
         }
     }
-    
-    //MARK: Override Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+    private func getUserPhoto(){
         guard let user = Auth.auth().currentUser else { return }
         let storageRef = Storage.storage().reference(forURL: "gs://labonswift.appspot.com")
         let storageProfileRef = storageRef.child("profile").child(user.uid)
@@ -76,6 +73,13 @@ final class EditViewController: UIViewController {
                } else {
             }
         }
+    }
+    
+    //MARK: Override Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        getUserPhoto()
     }
 }
 

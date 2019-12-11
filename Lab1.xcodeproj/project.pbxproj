@@ -17,6 +17,7 @@
 		2BCBD4902397C7A40053697C /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBD48C2397C7A40053697C /* UIViewController+Alert.swift */; };
 		2BCBD4912397C7A40053697C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBD48D2397C7A40053697C /* ProfileViewController.swift */; };
 		2BCBD4962397C8C90053697C /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCBD4952397C8C90053697C /* Picker.swift */; };
+		2BCFE70823985D3F00FEF004 /* addDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCFE70723985D3F00FEF004 /* addDataViewController.swift */; };
 		2BD8D32D2333B3C700CE2CD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8D32C2333B3C700CE2CD6 /* AppDelegate.swift */; };
 		2BD8D32F2333B3C800CE2CD6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BD8D32E2333B3C800CE2CD6 /* ViewController.swift */; };
 		2BD8D3322333B3C800CE2CD6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BD8D3302333B3C800CE2CD6 /* Main.storyboard */; };
@@ -59,6 +60,7 @@
 		2BCBD48C2397C7A40053697C /* UIViewController+Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		2BCBD48D2397C7A40053697C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2BCBD4952397C8C90053697C /* Picker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
+		2BCFE70723985D3F00FEF004 /* addDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addDataViewController.swift; sourceTree = "<group>"; };
 		2BD8D3292333B3C700CE2CD6 /* Lab1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lab1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BD8D32C2333B3C700CE2CD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BD8D32E2333B3C800CE2CD6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				2BD8D35C2333B75300CE2CD6 /* SingUpViewController.swift */,
 				2BD8D35E2333B77F00CE2CD6 /* LoginViewController.swift */,
 				2BD8D3602333B79000CE2CD6 /* HomeViewController.swift */,
+				2BCFE70723985D3F00FEF004 /* addDataViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				2B247E76236A375B008B72A7 /* CourseModel.swift in Sources */,
 				2BCBD48E2397C7A40053697C /* InfoViewController.swift in Sources */,
 				2BD8D3652334124E00CE2CD6 /* Constants.swift in Sources */,
+				2BCFE70823985D3F00FEF004 /* addDataViewController.swift in Sources */,
 				2B247E7A236F6C18008B72A7 /* СheckInternet.swift in Sources */,
 				2B247E74236A32AB008B72A7 /* ActorCell.swift in Sources */,
 			);

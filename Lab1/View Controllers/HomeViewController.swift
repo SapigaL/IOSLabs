@@ -28,14 +28,25 @@ final class HomeViewController: UIViewController {
     private var currentIndex = 0
     
     //MARK: Outlets
-    @IBOutlet private weak var welcomeUserLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var addButton: UIButton!
+    @IBAction func addNewData(_ sender: Any) {
+    }
+    @IBAction func addTouch(_ sender: Any) {
+        transitionToHome()
+    }
     
+    override func viewDidAppear(_ animated: Bool) {
+        setupVC()
+    }
     // MARK: - View controller lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: true)
         setupVC()
+        
+        addButton.layer.cornerRadius = 33.5
+        addButton.layer.masksToBounds = true
     }
     
     //MARK: - Prepare segue
@@ -64,6 +75,12 @@ final class HomeViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+    private func transitionToHome() {
+        let st = UIStoryboard(name: "Main", bundle: nil)
+        guard let viewController = st.instantiateViewController(withIdentifier: "AddCar") as? UITabBarController else { return }
+        viewController.modalPresentationStyle = .fullScreen
+        self.present(viewController, animated: true)
     }
     
     private func configTable(){
@@ -105,8 +122,8 @@ extension HomeViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ActorCell") as! ActorCell
         let datatt = dataCourse[indexPath.row]
-        cell.nameLbl.text = "Count cars: " + datatt.ParkingSpaces
-        cell.valueLbl.text = "MARK: " + datatt.ParkingSpaces
+        cell.nameLbl.text = "Name car: " + datatt.trademark
+        cell.valueLbl.text = "MARK: " + datatt.address
         cell.img.sd_setImage(with: datatt.img, placeholderImage: nil)
         return cell
     }

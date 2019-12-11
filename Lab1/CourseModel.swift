@@ -15,3 +15,9 @@ struct Course: Decodable {
     let img: URL
     let ParkingSpaces: String
 }
+
+struct CourseCar: Codable {
+    var id: String
+    var nameCar: String
+    var mark: String
+}
