@@ -60,9 +60,9 @@ final class EditViewController: UIViewController {
             }
             request.commitChanges(completion: nil)
             self.showAlertMessageWithTitleOkButton("You change it")
-            
         }
     }
+    
     private func getUserPhoto(){
         guard let user = Auth.auth().currentUser else { return }
         let storageRef = Storage.storage().reference(forURL: "gs://labonswift.appspot.com")

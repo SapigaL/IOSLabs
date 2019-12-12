@@ -198,16 +198,16 @@
             </objects>
             <point key="canvasLocation" x="3113" y="1197"/>
         </scene>
-        <!--Add Data View Controller-->
+        <!--Send New Car Info-->
         <scene sceneID="WEj-Vx-vW6">
             <objects>
-                <viewController id="d9h-US-RqQ" customClass="addDataViewController" customModule="Lab1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addCar" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d9h-US-RqQ" customClass="SendNewCarInfo" customModule="Lab1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3hQ-nB-XGD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1qY-co-aNr">
-                                <rect key="frame" x="50" y="94" width="276" height="374.5"/>
+                                <rect key="frame" x="50" y="50" width="276" height="434.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7g3-4T-LFD">
                                         <rect key="frame" x="0.0" y="0.0" width="276" height="40"/>
@@ -257,8 +257,14 @@
                                             <action selector="signUpTapped:" destination="8iQ-uy-ARK" eventType="touchUpInside" id="DSv-jJ-YXg"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="nFq-V6-Pav">
+                                        <rect key="frame" x="0.0" y="354" width="276" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="P9W-9n-FWJ"/>
+                                        </constraints>
+                                    </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Error" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zw7-5J-PzX">
-                                        <rect key="frame" x="0.0" y="354" width="276" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="414" width="276" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="1" green="0.1173306502" blue="0.078410624979999996" alpha="0.68670224469999996" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -281,6 +287,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="SfD-Oj-V6d"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="nFq-V6-Pav" id="bX2-FG-uLp"/>
                         <outlet property="addCarButton" destination="Jtf-od-Gxk" id="IBf-ir-RCF"/>
                         <outlet property="errorIdLabel" destination="s7O-sa-X33" id="GLg-Eh-7au"/>
                         <outlet property="errorLabel" destination="zw7-5J-PzX" id="vJb-xA-V73"/>
@@ -293,9 +300,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lf2-UA-zgF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7664.8000000000002" y="568.06596701649175"/>
+            <point key="canvasLocation" x="8604" y="568.06596701649175"/>
         </scene>
-        <!--Table-->
+        <!--Home View Controller-->
         <scene sceneID="P7Y-oI-4C2">
             <objects>
                 <viewController restorationIdentifier="homeVC" storyboardIdentifier="homeVC" id="JTN-wJ-bp5" customClass="HomeViewController" customModule="Lab1" customModuleProvider="target" sceneMemberID="viewController">
@@ -362,8 +369,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button" image="plus_PNG37"/>
                                 <connections>
-                                    <action selector="addNewData:" destination="JTN-wJ-bp5" eventType="touchUpInside" id="HnR-8c-K8I"/>
-                                    <segue destination="BpR-7r-dW6" kind="show" id="IKA-I2-w0B"/>
+                                    <action selector="OnTuch:" destination="JTN-wJ-bp5" eventType="touchUpInside" id="ICa-77-jUE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -376,7 +382,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NYl-1j-mou"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Table" image="table" catalog="system" id="vXC-cp-9EU"/>
                     <navigationItem key="navigationItem" id="NtU-bf-3jh"/>
                     <connections>
                         <outlet property="addButton" destination="WhV-A8-nOZ" id="XAz-9G-jlz"/>
@@ -386,7 +391,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Xa-iS-PA2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5593" y="233"/>
+            <point key="canvasLocation" x="6532" y="232.53373313343329"/>
         </scene>
         <!--Info DetailsVC-->
         <scene sceneID="qWQ-fh-Xmd">
@@ -446,7 +451,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6H8-pH-xlA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6726" y="-123"/>
+            <point key="canvasLocation" x="7664.8000000000002" y="-123.68815592203899"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -650,7 +655,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DwT-ZQ-xeP">
-                                        <rect key="frame" x="25.5" y="21" width="48" height="48"/>
+                                        <rect key="frame" x="37.5" y="33" width="24" height="24"/>
                                         <state key="normal" image="camera"/>
                                         <connections>
                                             <action selector="changePhoto:" destination="pqP-gM-fEy" eventType="touchUpInside" id="OTH-Fu-wYH"/>
@@ -746,7 +751,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="lrc-E8-1z3" kind="relationship" relationship="viewControllers" id="rpv-uw-sCj"/>
-                        <segue destination="JTN-wJ-bp5" kind="relationship" relationship="viewControllers" id="dBr-L8-PWl"/>
+                        <segue destination="apO-pX-d0o" kind="relationship" relationship="viewControllers" id="dBr-L8-PWl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2oZ-Wb-GGo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -772,24 +777,24 @@
             </objects>
             <point key="canvasLocation" x="5212" y="1252.6236881559221"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="vcj-6g-RUs">
+        <!--Table-->
+        <scene sceneID="Yud-QT-KC6">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BpR-7r-dW6" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="apO-pX-d0o" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Table" image="table" catalog="system" id="vXC-cp-9EU"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="0lw-sY-bZg"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="v4p-BP-NUu">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9df-hr-h0L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="d9h-US-RqQ" kind="relationship" relationship="rootViewController" id="FdS-YQ-I40"/>
+                        <segue destination="JTN-wJ-bp5" kind="relationship" relationship="rootViewController" id="GNR-D1-lpo"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TBF-60-AKT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n3Q-Gn-p0J" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6725.6000000000004" y="568.9655172413793"/>
+            <point key="canvasLocation" x="5592.8000000000002" y="232.53373313343329"/>
         </scene>
     </scenes>
     <resources>

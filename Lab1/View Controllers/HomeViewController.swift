@@ -13,8 +13,6 @@ import MaterialComponents.MaterialSnackbar
 import MaterialComponents.MaterialButtons
 
 final class HomeViewController: UIViewController {
-
-
     //MARK:  Properties
     private let message = MDCSnackbarMessage()
     private let network = NetworkManager()
@@ -29,26 +27,18 @@ final class HomeViewController: UIViewController {
     
     //MARK: Outlets
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet weak var addButton: UIButton!
-    @IBAction func addNewData(_ sender: Any) {
-    }
-    @IBAction func addTouch(_ sender: Any) {
-        transitionToHome()
+    @IBOutlet private weak var addButton: UIButton!
+    
+    //MARK: Button Methods
+    @IBAction private func OnTuch(_ sender: Any) {
+        transitionToAddCar()
     }
     
+    //MARK: Override Methods
     override func viewDidAppear(_ animated: Bool) {
         setupVC()
     }
-    // MARK: - View controller lifecycle methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        setupVC()
-        
-        addButton.layer.cornerRadius = 33.5
-        addButton.layer.masksToBounds = true
-    }
-    
+
     //MARK: - Prepare segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let destinationVC = segue.destination as? InfoDetailsVC else { return }
@@ -57,13 +47,14 @@ final class HomeViewController: UIViewController {
     
     //MARK: Private Methods
     private func setupVC() {
+        addButton.layer.cornerRadius = 33.5
+        addButton.layer.masksToBounds = true
         configTable()
         if checkConnection() { fetchData() }
         else { showMessege(text: "No Internet connection") }
     }
     
     private func fetchData(){
-        
         network.getDataFromServer { [weak self] (result) in
             switch result {
             case .Seccess(let data):
@@ -75,12 +66,6 @@ final class HomeViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-    }
-    private func transitionToHome() {
-        let st = UIStoryboard(name: "Main", bundle: nil)
-        guard let viewController = st.instantiateViewController(withIdentifier: "AddCar") as? UITabBarController else { return }
-        viewController.modalPresentationStyle = .fullScreen
-        self.present(viewController, animated: true)
     }
     
     private func configTable(){
@@ -106,6 +91,12 @@ final class HomeViewController: UIViewController {
         else {
             self.showMessege(text: "No Intqernet connection")
         }
+    }
+    
+    private func transitionToAddCar() {
+        let st = UIStoryboard(name: "Main", bundle: nil)
+        guard let viewController = st.instantiateViewController(withIdentifier: "addCar") as? SendNewCarInfo else { return }
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
