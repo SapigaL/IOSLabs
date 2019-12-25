@@ -86,8 +86,6 @@ final class SingUpViewController: UIViewController, UITextFieldDelegate {
                 Utilities.styleTextField(FieldList[i], color: UIColor.errorColor, textLabel: errorLabelList[i], labelcolor: UIColor.errorColor, errorText: Constants.ErrorText.errorText[i], labelHide: false)
             }
         }
-        
-        
         if checkingErrors > 0 {
             return "Please fill correct fields"
         }

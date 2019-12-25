@@ -51,7 +51,6 @@ final class LoginViewController: UIViewController {
         errorLabel.alpha = 0
         //style the elements
         errorLabel.isHidden = true // hide
-        
         Utilities.styleTextField(emailTextField, color: UIColor.color, textLabel: errorEmailLabel, labelcolor: UIColor.successColor, errorText: Constants.ErrorText.errorTextLogin[1], labelHide: true)
         Utilities.styleTextField(passwordTextField, color: UIColor.color, textLabel: errorPasswordLabel, labelcolor: UIColor.successColor, errorText: Constants.ErrorText.errorTextLogin[1], labelHide: true)
         Utilities.styleFilledButton(loginButton)

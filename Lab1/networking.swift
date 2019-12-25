@@ -34,6 +34,33 @@ final class NetworkManager{
             }
         }.resume()
     }
+    
+    public func postDataFromServer(dataCar: CourseCar) -> Bool {
+        print(dataCar)
+        guard let url = URL(string: "http://localhost:1337/form") else { return false}
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let httpBody = try? JSONEncoder().encode(dataCar) else{
+            return false
+        }
+        request.httpBody = httpBody
+        let session = URLSession.shared
+        session.dataTask(with: request) { (data, response, error) in
+            if let response = response {
+                print(response)
+                print("response1")
+            }
+            guard let data = data else {return}
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                } catch{
+                    print(error)
+                }
+        }.resume()
+        return true
+    }
 }
 
 
